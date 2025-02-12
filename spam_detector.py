@@ -4,8 +4,22 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load the trained model
-model = joblib.load("spam_classifier.pkl")  # Load the saved model
-vectorizer = joblib.load("tfidf_vectorizer.pkl")  # Load the saved vectorizer
+import urllib.request
+
+# Download the model from GitHub
+urllib.request.urlretrieve(
+    "https://raw.githubusercontent.com/sanwadR/SpamDetect/main/spam_classifier.pkl",
+    "spam_classifier.pkl"
+)
+
+urllib.request.urlretrieve(
+    "https://raw.githubusercontent.com/sanwadR/SpamDetect/main/tfidf_vectorizer.pkl",
+    "tfidf_vectorizer.pkl"
+)
+
+# Load the model
+model = joblib.load("spam_classifier.pkl")
+vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 # Streamlit UI
 st.title("Spam Detector")
